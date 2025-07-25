@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Mist Window Cleaning</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .services-hero {
+            background: linear-gradient(120deg, var(--primary-blue) 60%, #e3f2fd 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3.5rem 1rem 2.5rem 1rem;
+            border-radius: 0 0 2.5rem 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .services-hero h1 {
+            font-size: 2.7rem;
+            font-weight: 900;
+            margin-bottom: 1.1rem;
+        }
+        .services-hero p {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #e3f2fd;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.2rem;
+            max-width: 1200px;
+            margin: 0 auto 2.5rem auto;
+            padding: 0 0.5rem;
+        }
+        .service-card-modern {
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 24px rgba(0,40,80,0.07);
+            border: 1.5px solid #e3f2fd;
+            padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+            text-align: left;
+            transition: box-shadow 0.2s, transform 0.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+        }
+        .service-card-modern:hover {
+            box-shadow: 0 8px 32px rgba(0,180,230,0.13);
+            transform: translateY(-6px) scale(1.025);
+            border-color: var(--primary-blue);
+        }
+        .service-card-modern strong {
+            font-size: 1.25rem;
+            color: var(--primary-blue);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .service-card-modern .service-desc {
+            color: #444;
+            font-size: 1.08rem;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+        .service-card-modern .service-link {
+            margin-top: auto;
+            align-self: flex-start;
+            color: #fff;
+            background: var(--primary-blue);
+            border-radius: 2rem;
+            padding: 0.5rem 1.3rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,180,230,0.10);
+            transition: background 0.2s;
+        }
+        .service-card-modern .service-link:hover {
+            background: #01579b;
+        }
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-hero h1 { font-size: 2rem; }
+            .services-hero { padding: 2.2rem 0.5rem 1.5rem 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="logo-icon" style="height:110px;width:110px;">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="services-hero">
+            <h1>Our Window Cleaning Services</h1>
+            <p>We offer a full range of professional window and exterior cleaning services for homes and businesses in the Greater Toronto Area. Explore our services below and see how we can make your property shine!</p>
+        </section>
+        <div class="services-grid">
+            <div class="service-card-modern">
+                <strong>Residential Window Cleaning</strong>
+                <span class="service-desc">Streak-free, sparkling windows for your home. Includes deep cleaning for tough grime and screen cleaning for a clearer view and better airflow.</span>
+                <a href="/service-residential" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card-modern">
+                <strong>Commercial Window Cleaning</strong>
+                <span class="service-desc">Impress your customers with spotless windows. Reliable, efficient, and tailored to your business needs and schedule.</span>
+                <a href="/service-commercial" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card-modern">
+                <strong>Post-Construction Cleaning</strong>
+                <span class="service-desc">Remove dust, debris, and construction residue for a spotless, move-in ready space after renovations or new builds.</span>
+                <a href="/service-postconstruction" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card-modern">
+                <strong>Scheduled Maintenance</strong>
+                <span class="service-desc">Keep your windows sparkling all year round with flexible, priority maintenance plans for homes and businesses.</span>
+                <a href="/service-maintenance" class="service-link">Learn More</a>
+            </div>
+        </div>
+        <div style="text-align:center;margin-bottom:2.5rem;">
+            <a href="/contact" class="btn">Request a Free Quote</a>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-divider"></div>
+            <div class="footer-info" style="margin: 1.5rem 0; text-align: center;">
+                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="footer-logo" style="height:48px;width:48px;vertical-align:middle;">
+                <div class="footer-brand" style="font-size:1.2rem;font-weight:900;color:var(--primary-blue);margin:0.5rem 0;">Mist Window Cleaning</div>
+                <div style="margin:0.2rem 0;">Phone: <a href="tel:16475594222" style="color:var(--primary-blue);text-decoration:underline;">(647) - 559 - 4222</a></div>
+                <div style="margin:0.2rem 0;">Email: <a href="mailto:info@mistwindowcleaning.ca" style="color:var(--primary-blue);text-decoration:underline;">info@mistwindowcleaning.ca</a></div>
+                <div style="margin:0.2rem 0;">Service Area: Greater Toronto Area</div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-copyright">
+                <span>&copy; 2025 Mist Window Cleaning. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html> 

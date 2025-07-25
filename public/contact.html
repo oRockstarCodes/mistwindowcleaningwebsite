@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Mist Window Cleaning</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: 3rem auto 2rem auto;
+            background: #fff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 24px rgba(0,40,80,0.07);
+            padding: 2.5rem 2rem;
+        }
+        .contact-left {
+            flex: 1 1 320px;
+            min-width: 270px;
+            max-width: 400px;
+        }
+        .contact-logo {
+            display: block;
+            margin-bottom: 1.2rem;
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+        .contact-business {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1.2rem;
+        }
+        .contact-details {
+            font-size: 1.05rem;
+            color: #222;
+            margin-bottom: 2.2rem;
+        }
+        .contact-details strong {
+            display: inline-block;
+            min-width: 70px;
+            color: var(--primary-blue);
+        }
+        .contact-details a {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+        .contact-right {
+            flex: 1 1 350px;
+            min-width: 320px;
+            max-width: 500px;
+        }
+        .contact-form-modern label {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+        .contact-form-modern input,
+        .contact-form-modern textarea {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid #cfd8dc;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            margin-bottom: 1.1rem;
+            background: #f8fafc;
+            transition: border 0.2s;
+        }
+        .contact-form-modern input:focus,
+        .contact-form-modern textarea:focus {
+            border: 1.5px solid var(--primary-blue);
+            outline: none;
+        }
+        .contact-form-modern .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        .contact-form-modern .form-row > div {
+            flex: 1 1 0;
+        }
+        .contact-form-modern button {
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 900px) {
+            .contact-flex {
+                flex-direction: column;
+                padding: 1.5rem 0.5rem;
+            }
+            .contact-left, .contact-right {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="logo-icon" style="height:110px;width:110px;">
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="contact-flex">
+            <div class="contact-left">
+                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="contact-logo">
+                <div class="contact-business">Mist Window Cleaning</div>
+                <div class="contact-details">
+                    <div><strong>Address:</strong> Greater Toronto Area</div>
+                    <div><strong>Phone:</strong> <a href="tel:16475594222">(647) - 559 - 4222</a></div>
+                    <div><strong>Email:</strong> <a href="mailto:info@mistwindowcleaning.ca">info@mistwindowcleaning.ca</a></div>
+                </div>
+            </div>
+            <div class="contact-right">
+                <h2 style="font-size:1.4rem;font-weight:700;color:#444;margin-bottom:1.2rem;">Get an estimate</h2>
+                <form class="contact-form-modern" method="POST" action="/contact">
+                    <div class="form-row">
+                        <div>
+                            <label for="firstName">First Name <span style="color:#e53935;">(required)</span></label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div>
+                            <label for="lastName">Last Name <span style="color:#e53935;">(required)</span></label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email">Email Address <span style="color:#e53935;">(required)</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="subject">Subject <span style="color:#e53935;">(required)</span></label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-divider"></div>
+            <div class="footer-info" style="margin: 1.5rem 0; text-align: center;">
+                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="footer-logo" style="height:48px;width:48px;vertical-align:middle;">
+                <div class="footer-brand" style="font-size:1.2rem;font-weight:900;color:var(--primary-blue);margin:0.5rem 0;">Mist Window Cleaning</div>
+                <div style="margin:0.2rem 0;">Phone: <a href="tel:16475594222" style="color:var(--primary-blue);text-decoration:underline;">(647) - 559 - 4222</a></div>
+                <div style="margin:0.2rem 0;">Email: <a href="mailto:info@mistwindowcleaning.ca" style="color:var(--primary-blue);text-decoration:underline;">info@mistwindowcleaning.ca</a></div>
+                <div style="margin:0.2rem 0;">Service Area: Greater Toronto Area</div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-copyright">
+                <span>&copy; 2025 Mist Window Cleaning. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/main.js"></script>
+    <script>
+      // Auto-fill subject from URL parameter if present
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const subject = params.get('subject');
+        if(subject) {
+          const subjectInput = document.getElementById('subject');
+          if(subjectInput) subjectInput.value = subject;
+        }
+      })();
+    </script>
+</body>
+</html> 
