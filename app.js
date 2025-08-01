@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -50,12 +51,29 @@ app.get('/service-postconstruction', (req, res) => {
 
 // Contact form POST handler
 app.post('/contact', async (req, res) => {
-  const { firstName, lastName, email, subject, message } = req.body;
+  const { firstName, lastName, email, phone, subject, message } = req.body;
+  
+  // Basic validation
+  if (!firstName || !lastName || !email || !subject || !message) {
+    return res.status(400).json({ 
+      success: false, 
+      message: 'Please fill in all required fields.' 
+    });
+  }
+
   const mailOptions = {
-    from: 'info@mistwindowcleaning.ca',
-    to: 'info@mistwindowcleaning.ca',
-    subject: `Contact Form: ${subject || 'No Subject'}`,
-    text: `Name: ${firstName || ''} ${lastName || ''}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
+    from: 'rockstarshomeservices@gmail.com',
+    to: ['rockstarshomeservices@gmail.com', 'mistwindowcleaning@gmail.com'],
+    subject: `Contact Form: ${subject}`,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Message:</strong></p>
+      <p>${message.replace(/\n/g, '<br>')}</p>
+    `,
     replyTo: email
   };
 
@@ -63,17 +81,23 @@ app.post('/contact', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail', // or your email provider
     auth: {
-      user: 'info@mistwindowcleaning.ca', // update with your real email
-      pass: 'YOUR_EMAIL_PASSWORD' // update with your real password or app password
+      user: 'rockstarshomeservices@gmail.com',
+      pass: 'pxix natr qpkt dnsd' // Replace with your Gmail app password
     }
   });
 
   try {
     await transporter.sendMail(mailOptions);
-    res.send('<h2>Thank you for contacting us! We will get back to you soon.</h2><a href="/">Return Home</a>');
+    res.json({ 
+      success: true, 
+      message: 'Thank you for contacting us! We will get back to you soon.' 
+    });
   } catch (err) {
     console.error('Error sending email:', err);
-    res.status(500).send('<h2>Sorry, there was an error sending your message. Please try again later.</h2><a href="/contact">Back to Contact</a>');
+    res.status(500).json({ 
+      success: false, 
+      message: 'Sorry, there was an error sending your message. Please try again later.' 
+    });
   }
 });
 

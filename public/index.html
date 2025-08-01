@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mist Window Cleaning</title>
+    <title>Mist Window Cleaning - Professional Window Cleaning Services</title>
     <link rel="stylesheet" href="/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
     <header>
         <nav>
             <div class="logo-container">
-                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="logo-icon" style="height:110px;width:110px;">
+                <img src="/images/logo.png" alt="Mist Window Cleaning Logo" class="logo-icon" style="height:110px;width:110px;">
             </div>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -22,36 +20,96 @@
             </ul>
         </nav>
     </header>
+    
     <main>
-        <section class="hero" style="position:relative;">
-            <h2>Professional Window Cleaning</h2>
-            <p>Let your home shine! We provide streak-free, sparkling window cleaning for homes and businesses in your area. Reliable, friendly, and affordable service every time.</p>
-            <div class="hero-btn-group" style="display:flex;justify-content:center;gap:2rem;margin-top:2.2rem;flex-wrap:wrap;">
-                <a href="/contact" class="btn" aria-label="Get a Free Window Cleaning Quote">Get a Free Window Cleaning Quote</a>
-                <a href="/services" class="btn btn-secondary" aria-label="See Our Services">See Our Services</a>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Professional Window Cleaning</h1>
+                <p>Let your home shine! We provide streak-free, sparkling window cleaning for homes and businesses in your area. Reliable, friendly, and affordable service every time.</p>
+                <div class="hero-buttons">
+                    <a href="/contact" class="btn-primary">Get a Free Window Cleaning Quote</a>
+                    <a href="/services" class="btn-secondary">See Our Services</a>
+                </div>
             </div>
         </section>
-        <span class="divider"></span>
-        <section class="intro card" style="background: #00263a; color: #fff; text-align: center; padding: 4rem 2rem; border-radius: 2rem;">
-          <h2 style="color: #fff; font-size: 2.4rem; font-weight: 900; margin-bottom: 1.2rem;">Your Local Window Cleaning Experts</h2>
-          <p style="color: #fff; font-size: 1.22rem; max-width: 900px; margin: 0 auto;">
-            At Mist Window Cleaning, we’re a locally owned and operated business dedicated to making your windows shine. Our friendly team brings fresh energy, attention to detail, and a strong work ethic to every job. We pride ourselves on honest communication, reliable service, and sparkling results—every time.
-          </p>
+        
+        <section class="about-section">
+            <div class="about-content">
+                <h2>Your Local Window Cleaning Experts</h2>
+                <p>At Mist Window Cleaning, we're a locally owned and operated business dedicated to making your windows shine. Our friendly team brings fresh energy, attention to detail, and a strong work ethic to every job. We pride ourselves on honest communication, reliable service, and sparkling results—every time.</p>
+            </div>
         </section>
-        <!-- Service Area Feature Section -->
-        <section class="service-area card" style="max-width:900px;margin:2.5rem auto 2rem auto;padding:2rem 1rem;text-align:center;">
-            <h3 style="color:var(--primary-blue);font-weight:900;margin-bottom:0.5rem;">Our Service Area: Toronto</h3>
-            <p style="margin-bottom:1.2rem;">Mist Window Cleaning proudly serves the Greater Toronto Area. The yellow circle below shows our primary service region, centered in Scarborough.</p>
-            <div style="width:100%;max-width:600px;margin:0 auto 1rem auto;box-shadow:0 4px 24px rgba(0,180,230,0.10);border-radius:1.2rem;overflow:hidden;">
-                <div id="service-map" style="width:100%;height:320px;"></div>
+        
+        <section class="service-area-section">
+            <div class="service-area-content">
+                <h2>Our Service Area: Toronto</h2>
+                <p>Mist Window Cleaning proudly serves the Greater Toronto Area. The yellow circle below shows our primary service region, centered in Scarborough.</p>
+                <div class="map-container">
+                    <div id="map" style="height: 400px; width: 100%; border-radius: 12px; overflow: hidden;"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="services-preview">
+            <h2>Our Premium Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🏠</span>
+                    <h3>Residential Window Cleaning</h3>
+                    <p>Professional window cleaning for homes and apartments with attention to detail and streak-free results.</p>
+                    <ul class="service-features">
+                        <li>Interior & exterior windows</li>
+                        <li>Screen cleaning included</li>
+                        <li>Frame and sill cleaning</li>
+                        <li>Eco-friendly solutions</li>
+                    </ul>
+                                         <a href="/service-residential" class="service-cta">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏢</span>
+                    <h3>Commercial Window Cleaning</h3>
+                    <p>Comprehensive window cleaning services for businesses, offices, and commercial properties.</p>
+                    <ul class="service-features">
+                        <li>High-rise window cleaning</li>
+                        <li>Storefront windows</li>
+                        <li>Office building services</li>
+                        <li>Flexible scheduling</li>
+                    </ul>
+                    <a href="/service-commercial" class="service-cta">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🛡️</span>
+                    <h3>Gutter Cleaning</h3>
+                    <p>Professional gutter cleaning to remove debris and ensure proper water flow from your roof.</p>
+                    <ul class="service-features">
+                        <li>Complete debris removal</li>
+                        <li>Downspout cleaning</li>
+                        <li>Gutter inspection</li>
+                        <li>Safety equipment included</li>
+                    </ul>
+                    <a href="/service-gutter" class="service-cta">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🔧</span>
+                    <h3>Maintenance Cleaning</h3>
+                    <p>Regular maintenance cleaning to keep your property looking its best year-round.</p>
+                    <ul class="service-features">
+                        <li>Regular scheduled cleaning</li>
+                        <li>Preventive maintenance</li>
+                        <li>Seasonal cleaning packages</li>
+                        <li>Priority scheduling</li>
+                    </ul>
+                    <a href="/service-maintenance" class="service-cta">Learn More</a>
+                </div>
             </div>
         </section>
     </main>
+    
     <footer>
         <div class="footer-content">
             <div class="footer-divider"></div>
             <div class="footer-info" style="margin: 1.5rem 0; text-align: center;">
-                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="footer-logo" style="height:48px;width:48px;vertical-align:middle;">
+                <img src="/images/logo.png" alt="Mist Window Cleaning Logo" class="footer-logo" style="height:48px;width:48px;vertical-align:middle;">
                 <div class="footer-brand" style="font-size:1.2rem;font-weight:900;color:var(--primary-blue);margin:0.5rem 0;">Mist Window Cleaning</div>
                 <div style="margin:0.2rem 0;">Phone: <a href="tel:16475594222" style="color:var(--primary-blue);text-decoration:underline;">(647) - 559 - 4222</a></div>
                 <div style="margin:0.2rem 0;">Email: <a href="mailto:info@mistwindowcleaning.ca" style="color:var(--primary-blue);text-decoration:underline;">info@mistwindowcleaning.ca</a></div>
@@ -63,32 +121,33 @@
             </div>
         </div>
     </footer>
+    
     <script src="/js/main.js"></script>
-    <!-- Leaflet JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-      // Initialize Leaflet map centered on Scarborough
-      var map = L.map('service-map').setView([43.78, -79.25], 11);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-      // Draw a yellow polygon for Markham and Scarborough (not covering the water)
-      var markhamScarboroughPolygon = [
-        [43.8500, -79.3600], // Markham (NW)
-        [43.9000, -79.2000], // Markham (N)
-        [43.9000, -79.1000], // Markham (NE)
-        [43.8200, -79.1000], // Scarborough (E)
-        [43.7500, -79.1500], // Scarborough (SE, moved north)
-        [43.7500, -79.2500], // Scarborough (S, moved north)
-        [43.7800, -79.3600], // Scarborough (SW, moved north)
-        [43.8500, -79.3600]  // Close polygon (Markham NW)
-      ];
-      L.polygon(markhamScarboroughPolygon, {
-        color: '#FFD600',
-        fillColor: '#FFF59D',
-        fillOpacity: 0.35,
-        weight: 2
-      }).addTo(map);
+        // Initialize map when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create map centered on Scarborough, Toronto
+            const map = L.map('map').setView([43.7764, -79.2318], 10);
+            
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+            
+            // Add yellow circle highlighting primary service area (Scarborough)
+            const serviceArea = L.circle([43.7764, -79.2318], {
+                color: '#FFD700',
+                fillColor: '#FFD700',
+                fillOpacity: 0.3,
+                radius: 15000
+            }).addTo(map);
+            
+            // Add marker for Scarborough
+            const scarboroughMarker = L.marker([43.7764, -79.2318]).addTo(map);
+            scarboroughMarker.bindPopup("<b>Scarborough</b><br>Primary Service Area").openPopup();
+        });
     </script>
 </body>
 </html> 

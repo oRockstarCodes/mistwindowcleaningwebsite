@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | Mist Window Cleaning</title>
+
     <link rel="stylesheet" href="/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -104,7 +105,7 @@
     <header>
         <nav>
             <div class="logo-container">
-                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="logo-icon" style="height:110px;width:110px;">
+                <img src="/images/logo.png" alt="Mist Window Cleaning Logo" class="logo-icon" style="height:110px;width:110px;">
             </div>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -116,7 +117,7 @@
     <main>
         <div class="contact-flex">
             <div class="contact-left">
-                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="contact-logo">
+                <img src="/images/logo.png" alt="Mist Window Cleaning Logo" class="contact-logo">
                 <div class="contact-business">Mist Window Cleaning</div>
                 <div class="contact-details">
                     <div><strong>Address:</strong> Greater Toronto Area</div>
@@ -126,7 +127,7 @@
             </div>
             <div class="contact-right">
                 <h2 style="font-size:1.4rem;font-weight:700;color:#444;margin-bottom:1.2rem;">Get an estimate</h2>
-                <form class="contact-form-modern" method="POST" action="/contact">
+                <form class="contact-form-modern" method="POST" action="/contact" novalidate>
                     <div class="form-row">
                         <div>
                             <label for="firstName">First Name <span style="color:#e53935;">(required)</span></label>
@@ -140,6 +141,10 @@
                     <div>
                         <label for="email">Email Address <span style="color:#e53935;">(required)</span></label>
                         <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
                     </div>
                     <div>
                         <label for="subject">Subject <span style="color:#e53935;">(required)</span></label>
@@ -158,7 +163,7 @@
         <div class="footer-content">
             <div class="footer-divider"></div>
             <div class="footer-info" style="margin: 1.5rem 0; text-align: center;">
-                <img src="/images/logo-icon.png" alt="Mist Window Cleaning Logo" class="footer-logo" style="height:48px;width:48px;vertical-align:middle;">
+                <img src="/images/logo.png" alt="Mist Window Cleaning Logo" class="footer-logo" style="height:48px;width:48px;vertical-align:middle;">
                 <div class="footer-brand" style="font-size:1.2rem;font-weight:900;color:var(--primary-blue);margin:0.5rem 0;">Mist Window Cleaning</div>
                 <div style="margin:0.2rem 0;">Phone: <a href="tel:16475594222" style="color:var(--primary-blue);text-decoration:underline;">(647) - 559 - 4222</a></div>
                 <div style="margin:0.2rem 0;">Email: <a href="mailto:info@mistwindowcleaning.ca" style="color:var(--primary-blue);text-decoration:underline;">info@mistwindowcleaning.ca</a></div>
@@ -170,7 +175,6 @@
             </div>
         </div>
     </footer>
-    <script src="/js/main.js"></script>
     <script>
       // Auto-fill subject from URL parameter if present
       (function() {
@@ -181,6 +185,79 @@
           if(subjectInput) subjectInput.value = subject;
         }
       })();
+
+      // Handle form submission
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.contact-form-modern');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          // Show loading state
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Sending...';
+          submitBtn.disabled = true;
+          
+          try {
+            const formData = new FormData(form);
+            const response = await fetch('/contact', {
+              method: 'POST',
+              body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+              // Show success message
+              showMessage(result.message, 'success');
+              form.reset();
+            } else {
+              // Show error message
+              showMessage(result.message, 'error');
+            }
+          } catch (error) {
+            showMessage('An error occurred. Please try again.', 'error');
+          } finally {
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+        });
+        
+        function showMessage(message, type) {
+          // Remove existing message
+          const existingMessage = document.querySelector('.form-message');
+          if (existingMessage) {
+            existingMessage.remove();
+          }
+          
+          // Create new message
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `form-message ${type}`;
+          messageDiv.style.cssText = `
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            ${type === 'success' ? 
+              'background: #d4edda; color: #155724; border: 1px solid #c3e6cb;' : 
+              'background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'
+            }
+          `;
+          messageDiv.textContent = message;
+          
+          // Insert after form
+          form.parentNode.insertBefore(messageDiv, form.nextSibling);
+          
+          // Auto-remove after 5 seconds
+          setTimeout(() => {
+            if (messageDiv.parentNode) {
+              messageDiv.remove();
+            }
+          }, 5000);
+        }
+      });
     </script>
 </body>
 </html> 

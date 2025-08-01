@@ -1,13 +1,9 @@
-name = "mistwindowcleaning"
+name = "mist-window-cleaning"
 main = "worker.js"
-type = "module"
-workers_dev = true
-compatibility_date = "2024-06-01"
-
-# Uncomment and fill in if deploying to a custom domain
-account_id = "7e9d47836c08dc6fd66b67dd894200d0"
-route = "https://mistwindowcleaning.ca/*"
-zone_id = "aaf605190f33aeeb0626d9fb75aae681"
+compatibility_date = "2024-01-01"
 
 [site]
 bucket = "./public"
+
+[build]
+command = "echo 'No build required'"

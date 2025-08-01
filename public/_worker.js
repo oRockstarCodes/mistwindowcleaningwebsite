@@ -1,7 +1,35 @@
-import { Router } from 'itty-router';
+// Simple router for handling requests
+function createRouter() {
+  const routes = new Map();
+  
+  return {
+    post: (path, handler) => routes.set(`POST:${path}`, handler),
+    all: (path, handler) => routes.set(`ALL:${path}`, handler),
+    handle: async (request, env, ctx) => {
+      const url = new URL(request.url);
+      const method = request.method;
+      const path = url.pathname;
+      
+      // Check for exact match first
+      const exactKey = `${method}:${path}`;
+      if (routes.has(exactKey)) {
+        return await routes.get(exactKey)(request, env, ctx);
+      }
+      
+      // Check for wildcard match
+      const wildcardKey = `ALL:${path}`;
+      if (routes.has(wildcardKey)) {
+        return await routes.get(wildcardKey)(request, env, ctx);
+      }
+      
+      // Default: serve static files
+      return env.ASSETS.fetch(request);
+    }
+  };
+}
 
-// Create a new router
-const router = Router();
+// Create router
+const router = createRouter();
 
 // Handle contact form submission
 router.post('/contact', async (request) => {
@@ -25,11 +53,14 @@ router.post('/contact', async (request) => {
       });
     }
 
-    // Send email using Cloudflare Email API
+    // Send email to both addresses using Cloudflare Email API
     const emailData = {
       personalizations: [
         {
-          to: [{ email: 'rockstarshomeservices@gmail.com', name: 'Mist Window Cleaning' }],
+          to: [
+            { email: 'rockstarshomeservices@gmail.com', name: 'Rockstar Home Services' },
+            { email: 'mistwindowcleaning@gmail.com', name: 'Mist Window Cleaning' }
+          ],
           subject: `Contact Form: ${subject}`
         }
       ],
@@ -52,7 +83,7 @@ router.post('/contact', async (request) => {
     };
 
     // For now, we'll return success without actually sending email
-    // You'll need to configure Cloudflare Email API or use a service like SendGrid
+    // You can configure email sending later with Cloudflare Email API or SendGrid
     return new Response(JSON.stringify({
       success: true,
       message: 'Thank you for contacting us! We will get back to you soon.'
@@ -72,7 +103,7 @@ router.post('/contact', async (request) => {
 });
 
 // Handle all other routes - serve static files
-router.all('*', async (request) => {
+router.all('*', async (request, env) => {
   return env.ASSETS.fetch(request);
 });
 
