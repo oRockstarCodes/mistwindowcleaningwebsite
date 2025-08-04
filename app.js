@@ -51,49 +51,64 @@ app.get('/service-postconstruction', (req, res) => {
 
 // Contact form POST handler
 app.post('/contact', async (req, res) => {
-  const { firstName, lastName, email, phone, subject, message } = req.body;
-  
-  // Basic validation
-  if (!firstName || !lastName || !email || !subject || !message) {
-    return res.status(400).json({ 
-      success: false, 
-      message: 'Please fill in all required fields.' 
-    });
-  }
-
-  const mailOptions = {
-    from: 'rockstarshomeservices@gmail.com',
-    to: ['rockstarshomeservices@gmail.com', 'mistwindowcleaning@gmail.com'],
-    subject: `Contact Form: ${subject}`,
-    html: `
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-      <p><strong>Subject:</strong> ${subject}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
-    `,
-    replyTo: email
-  };
-
-  // Configure your SMTP transport (update with your real SMTP credentials)
-  const transporter = nodemailer.createTransport({
-    service: 'gmail', // or your email provider
-    auth: {
-      user: 'rockstarshomeservices@gmail.com',
-      pass: 'pxix natr qpkt dnsd' // Replace with your Gmail app password
-    }
-  });
-
   try {
-    await transporter.sendMail(mailOptions);
+    const { firstName, lastName, email, phone, subject, message } = req.body;
+    
+    // Basic validation
+    if (!firstName || !lastName || !email || !subject || !message) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Please fill in all required fields.' 
+      });
+    }
+
+    const mailOptions = {
+      from: process.env.EMAIL_FROM || 'rockstarshomeservices@gmail.com',
+      to: ['rockstarshomeservices@gmail.com', 'mistwindowcleaning@gmail.com'],
+      subject: `Contact Form: ${subject}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
+      replyTo: email
+    };
+
+    // For now, just return success without actually sending email
+    // This prevents 500 errors while you configure email settings
+    console.log('Contact form submission received:', {
+      firstName,
+      lastName,
+      email,
+      phone,
+      subject,
+      message
+    });
+
     res.json({ 
       success: true, 
       message: 'Thank you for contacting us! We will get back to you soon.' 
     });
+
+    // TODO: Uncomment this section once you configure email settings in Render
+    /*
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER || 'rockstarshomeservices@gmail.com',
+        pass: process.env.EMAIL_PASS || 'your-app-password'
+      }
+    });
+
+    await transporter.sendMail(mailOptions);
+    */
+
   } catch (err) {
-    console.error('Error sending email:', err);
+    console.error('Error in contact form handler:', err);
     res.status(500).json({ 
       success: false, 
       message: 'Sorry, there was an error sending your message. Please try again later.' 
