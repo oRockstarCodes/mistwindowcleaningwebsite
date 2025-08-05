@@ -1,25 +1,17 @@
 {
-  "name": "mistwindowcleaning",
+  "name": "mist-window-cleaning",
   "version": "1.0.0",
+  "description": "Professional window cleaning website",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "node app.js",
-    "build": "echo 'No build required'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo 'No build required'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "engines": {
     "node": ">=18.0.0"
   },
-  "dependencies": {
-    "axios": "^1.11.0",
-    "body-parser": "^2.2.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "nodemailer": "^7.0.3"
-  }
+  "keywords": ["window-cleaning", "website", "professional"],
+  "author": "Mist Window Cleaning",
+  "license": "MIT"
 }
