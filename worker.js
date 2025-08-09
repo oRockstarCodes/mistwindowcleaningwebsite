@@ -72,13 +72,16 @@ router.post('/contact', async (request) => {
 });
 
 // Handle all other routes - serve static files
-router.all('*', async (request) => {
+router.all('*', async (request, env) => {
   return env.ASSETS.fetch(request);
 });
 
 // Export default handler
 export default {
   async fetch(request, env, ctx) {
-    return router.handle(request, env, ctx);
+    return router.handle(request, env, ctx).catch(() => {
+      // Fallback to serving static assets directly
+      return env.ASSETS.fetch(request);
+    });
   }
 }; 

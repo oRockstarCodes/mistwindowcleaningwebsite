@@ -1,8 +1,16 @@
-name = "mist-window-cleaning"
+name = "mistwindowcleaningwebsite"
+main = "worker.js"
 compatibility_date = "2024-01-01"
+pages_build_output_dir = "./public"
 
 [build]
 command = "echo 'No build required'"
 
-[site]
-bucket = "./public"
+# Routes configuration for custom domain
+[[routes]]
+pattern = "mistwindowcleaning.ca/*"
+custom_domain = true
+
+[[routes]]
+pattern = "www.mistwindowcleaning.ca/*"
+custom_domain = true

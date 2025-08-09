@@ -1,17 +1,25 @@
 {
-  "name": "mist-window-cleaning",
+  "name": "mistwindowcleaningwebsite",
   "version": "1.0.0",
   "description": "Professional window cleaning website",
-  "main": "app.js",
+  "main": "worker.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "node app.js",
-    "build": "echo 'No build required'"
+    "start": "wrangler pages dev",
+    "dev": "wrangler pages dev",
+    "build": "echo 'No build required'",
+    "deploy": "wrangler pages deploy ./public",
+    "serve": "wrangler pages dev ./public"
   },
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["window-cleaning", "website", "professional"],
+  "dependencies": {
+    "itty-router": "^4.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "keywords": ["window-cleaning", "website", "professional", "cloudflare-workers"],
   "author": "Mist Window Cleaning",
   "license": "MIT"
 }

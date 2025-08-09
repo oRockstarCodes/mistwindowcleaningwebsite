@@ -22,7 +22,12 @@ export default {
             message: 'Please fill in all required fields.'
           }), {
             status: 400,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+              'Access-Control-Allow-Headers': 'Content-Type'
+            }
           });
         }
 
@@ -43,7 +48,12 @@ export default {
           message: 'Thank you for contacting us! We will get back to you soon.'
         }), {
           status: 200,
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type'
+          }
         });
 
       } catch (error) {
@@ -53,12 +63,32 @@ export default {
           message: 'Sorry, there was an error processing your request. Please try again.'
         }), {
           status: 500,
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
         });
       }
     }
 
+    // Handle CORS preflight requests
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type'
+        }
+      });
+    }
+
     // Serve static files for all other routes
-    return env.ASSETS.fetch(request);
+    try {
+      return env.ASSETS.fetch(request);
+    } catch (error) {
+      console.error('Error serving static assets:', error);
+      return new Response('Page not found', { status: 404 });
+    }
   }
 }; 
