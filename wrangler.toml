@@ -4,7 +4,7 @@ compatibility_date = "2024-01-01"
 pages_build_output_dir = "./public"
 
 [build]
-command = "echo 'No build required'"
+command = "echo 'Static site build complete'"
 
 # Routes configuration for custom domain
 [[routes]]
